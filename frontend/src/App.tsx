@@ -27,6 +27,7 @@ import { ControlTowerModule } from './components/ControlTowerModule';
 import { NetworkModule } from './components/NetworkModule';
 import { LedgerModule } from './components/LedgerModule';
 import { NewDealModal } from './components/NewDealModal';
+import { EditorialHeroAndBento } from './components/EditorialHeroAndBento';
 import { 
   LayoutDashboard, 
   Truck, 
@@ -374,11 +375,26 @@ export function App() {
         t={t}
       />
 
-      {/* Main Container */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+      {/* Main Container wrapped with overflow-x-hidden for GSAP animations */}
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-8 overflow-x-hidden">
         
+        {/* Editorial Cinematic Hero & Gapless Bento Grid */}
+        <EditorialHeroAndBento
+          tradeMode={tradeMode}
+          language={language}
+          t={t}
+          onExploreCockpit={() => {
+            setActiveTab('COCKPIT');
+            window.scrollTo({ top: 680, behavior: 'smooth' });
+          }}
+          onOpenControlTower={() => {
+            setActiveTab('CONTROL_TOWER');
+            window.scrollTo({ top: 680, behavior: 'smooth' });
+          }}
+        />
+
         {/* Navigation Tabs Bar */}
-        <div className="flex items-center justify-between border-b border-slate-800/80 pb-2">
+        <div id="module-tabs" className="flex items-center justify-between border-b border-slate-800/80 pb-2 pt-4">
           <nav className="flex items-center space-x-1.5 sm:space-x-2">
             
             <button
