@@ -331,12 +331,12 @@ export const CockpitModule: React.FC<CockpitModuleProps> = ({
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
         {/* Left Column (7 cols): Udhari Radar with WhatsApp Reminders */}
-        <div className="lg:col-span-7 bg-slate-900/80 border border-slate-800 rounded-xl p-5 shadow-sm space-y-4">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-3 border-b border-slate-800">
+        <div className="lg:col-span-7 surface-card p-5 space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-3 border-b border-slate-800/80">
             <div>
               <div className="flex items-center gap-2">
-                <h2 className="text-base font-bold text-white m-0">{activeT.receivablesRadar}</h2>
-                <span className="text-xs text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded font-mono">
+                <h2 className="text-base font-semibold text-white m-0">{activeT.receivablesRadar}</h2>
+                <span className="text-xs text-amber-400 bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded-md font-mono font-medium">
                   ₹{totalReceivables.toLocaleString('en-IN')}
                 </span>
               </div>
@@ -344,12 +344,12 @@ export const CockpitModule: React.FC<CockpitModuleProps> = ({
             </div>
 
             {/* Aging Bucket Selector Chips */}
-            <div className="inline-flex rounded-lg bg-[#0d121d] p-0.5 border border-slate-800 text-xs font-medium">
+            <div className="inline-flex rounded-lg bg-[#090d14] p-0.5 border border-slate-800 text-xs font-medium">
               <button
                 type="button"
                 onClick={() => setSelectedBucket('30_PLUS')}
                 className={`px-2.5 py-1 rounded-md transition-all ${
-                  selectedBucket === '30_PLUS' ? 'bg-red-500/20 text-red-400 border border-red-500/30 font-semibold' : 'text-slate-400 hover:text-white'
+                  selectedBucket === '30_PLUS' ? 'bg-rose-500/20 text-rose-300 border border-rose-500/30 font-semibold' : 'text-slate-400 hover:text-white'
                 }`}
               >
                 {activeT.days30Plus} (₹{(bucket30PlusTotal / 1000).toFixed(0)}k)
@@ -393,8 +393,8 @@ export const CockpitModule: React.FC<CockpitModuleProps> = ({
                   key={party.id}
                   className={`p-3.5 rounded-xl border transition-all ${
                     isCritical
-                      ? 'bg-[#15121c] border-red-900/40 hover:border-red-700/60'
-                      : 'bg-[#0d121d] border-slate-800/80 hover:border-slate-700'
+                      ? 'bg-[#141018] border-rose-900/40 hover:border-rose-700/60'
+                      : 'surface-subtle hover:border-slate-700'
                   }`}
                 >
                   <div className="flex items-start justify-between gap-3">
@@ -402,7 +402,7 @@ export const CockpitModule: React.FC<CockpitModuleProps> = ({
                       <div className="flex items-center gap-2">
                         <span className="font-semibold text-white text-sm">{party.name}</span>
                         {isCritical && (
-                          <span className="px-1.5 py-0.2 rounded text-[10px] font-bold bg-red-500/20 text-red-400 border border-red-500/30">
+                          <span className="px-1.5 py-0.2 rounded text-[10px] font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30">
                             {activeT.criticalBadge}
                           </span>
                         )}
@@ -418,7 +418,7 @@ export const CockpitModule: React.FC<CockpitModuleProps> = ({
                       <div className="text-base font-bold font-mono text-amber-400">
                         ₹{party.currentBalance.toLocaleString('en-IN')}
                       </div>
-                      <span className="text-[11px] text-slate-500 block">
+                      <span className="text-[11px] text-slate-500 block font-mono">
                         {activeT.lastPayment} {party.lastPaymentDate}
                       </span>
                     </div>
