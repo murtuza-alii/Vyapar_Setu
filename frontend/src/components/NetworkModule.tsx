@@ -126,22 +126,22 @@ export const NetworkModule: React.FC<NetworkModuleProps> = ({
       {/* Tab 1: Group Buying */}
       {activeTab === 'GROUP_BUYING' && (
         <div className="space-y-6">
-          <div className="bg-gradient-to-r from-amber-500/10 via-amber-600/5 to-transparent border border-amber-500/30 rounded-2xl p-5">
+          <div className="surface-card p-5">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
-                  <span className="p-1 rounded bg-amber-500/20 text-amber-400">
+                  <span className="p-1 rounded-md bg-amber-500/10 text-amber-400 border border-amber-500/20">
                     <Sparkles className="w-4 h-4" />
                   </span>
-                  <h3 className="text-base font-bold text-white m-0">{activeT.samoohikKharid}</h3>
+                  <h3 className="text-base font-semibold text-white m-0">{activeT.samoohikKharid}</h3>
                 </div>
                 <p className="text-xs text-slate-300 max-w-2xl leading-relaxed">
                   {activeT.samoohikKharidSub}
                 </p>
               </div>
 
-              <div className="flex items-center gap-3 bg-slate-950/80 px-4 py-2.5 rounded-xl border border-slate-800">
-                <Percent className="w-6 h-6 text-emerald-400" />
+              <div className="flex items-center gap-3 surface-subtle px-4 py-2.5 rounded-xl">
+                <Percent className="w-5 h-5 text-emerald-400" />
                 <div>
                   <span className="text-[11px] text-slate-400 block">{language === 'en' ? 'Average Wholesale Savings:' : language === 'kn' ? 'ಸರಾಸರಿ ಉಳಿತಾಯ:' : 'औसत मंडी बचत:'}</span>
                   <span className="text-sm font-bold text-emerald-400 font-mono">₹12 - ₹25 {language === 'en' ? 'per Bag / Meter' : language === 'kn' ? 'ಪ್ರತಿ ಚೀಲ / ಮೀಟರ್' : 'प्रति बोरी / मीटर'}</span>
@@ -158,19 +158,19 @@ export const NetworkModule: React.FC<NetworkModuleProps> = ({
               const savingsPerUnit = pool.currentTierPrice - pool.nextTierPrice;
 
               return (
-                <div key={pool.id} className="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-sm space-y-4 relative overflow-hidden">
+                <div key={pool.id} className="surface-card p-5 space-y-4 relative overflow-hidden">
                   
                   {/* Pool Header */}
                   <div className="flex items-start justify-between gap-2">
                     <div>
-                      <span className="text-[11px] font-mono text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">
+                      <span className="text-[11px] font-mono text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20 font-medium">
                         {pool.manufacturer}
                       </span>
-                      <h4 className="text-base font-bold text-white mt-1.5">{pool.title}</h4>
+                      <h4 className="text-base font-semibold text-white mt-1.5">{pool.title}</h4>
                       <p className="text-xs text-slate-400">{pool.commodityName}</p>
                     </div>
 
-                    <div className="flex items-center gap-1.5 text-xs text-amber-400 bg-amber-950/30 border border-amber-900/40 px-2.5 py-1 rounded-lg">
+                    <div className="flex items-center gap-1.5 text-xs text-amber-400 surface-subtle px-2.5 py-1 rounded-lg">
                       <Clock className="w-3.5 h-3.5" />
                       <span>{pool.daysRemaining} {language === 'en' ? 'days left' : language === 'kn' ? 'ದಿನಗಳು ಬಾಕಿ' : 'दिन शेष'}</span>
                     </div>
@@ -180,12 +180,12 @@ export const NetworkModule: React.FC<NetworkModuleProps> = ({
                   <div className="space-y-1.5">
                     <div className="flex justify-between text-xs">
                       <span className="text-slate-400">
-                        {language === 'en' ? 'Pledged Volume:' : language === 'kn' ? 'ಬದ್ಧತೆಯ ಪ್ರಮಾಣ:' : 'प्रतिबद्ध मात्रा:'} <strong className="text-white font-mono">{pool.pledgedVolume.toLocaleString('en-IN')}</strong> / {pool.targetVolume.toLocaleString('en-IN')} {pool.unit}
+                        {language === 'en' ? 'Pledged Volume:' : language === 'kn' ? 'ಬದ್ಧತೆಯ ಪ್ರಮಾಣ:' : 'प्रतिबद्ध मात्रा:'} <strong className="text-white font-mono font-medium">{pool.pledgedVolume.toLocaleString('en-IN')}</strong> / {pool.targetVolume.toLocaleString('en-IN')} {pool.unit}
                       </span>
                       <span className="font-mono font-bold text-amber-400">{progressPercent.toFixed(1)}%</span>
                     </div>
                     
-                    <div className="h-2.5 w-full bg-slate-950 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                    <div className="h-2 w-full bg-[#090d14] rounded-full overflow-hidden border border-slate-800">
                       <div 
                         className="h-full bg-gradient-to-r from-amber-500 to-emerald-400 rounded-full transition-all duration-500"
                         style={{ width: `${progressPercent}%` }}
@@ -194,24 +194,24 @@ export const NetworkModule: React.FC<NetworkModuleProps> = ({
 
                     <p className="text-[11px] text-emerald-400 flex items-center justify-between pt-0.5">
                       <span>🎯 {language === 'en' ? `${remainingUnits.toLocaleString('en-IN')} ${pool.unit} needed to unlock next tier` : language === 'kn' ? `ಮುಂದಿನ ಹಂತ ಅನ್‌ಲಾಕ್ ಮಾಡಲು ${remainingUnits.toLocaleString('en-IN')} ${pool.unit} ಬಾಕಿ` : `अगला टियर अनलॉक करने हेतु ${remainingUnits.toLocaleString('en-IN')} ${pool.unit} शेष`}</span>
-                      <span className="font-bold">{language === 'en' ? 'Savings:' : language === 'kn' ? 'ಉಳಿತಾಯ:' : 'बचत:'} ₹{savingsPerUnit}/{pool.unit}</span>
+                      <span className="font-semibold">{language === 'en' ? 'Savings:' : language === 'kn' ? 'ಉಳಿತಾಯ:' : 'ಬಚತ್:'} ₹{savingsPerUnit}/{pool.unit}</span>
                     </p>
                   </div>
 
                   {/* Pricing Tiers Comparison */}
-                  <div className="grid grid-cols-2 gap-3 text-xs bg-slate-950 p-3 rounded-xl border border-slate-800/80">
+                  <div className="grid grid-cols-2 gap-3 text-xs surface-subtle p-3 rounded-xl">
                     <div>
-                      <span className="text-slate-500 text-[10px] block">{language === 'en' ? 'Current Pool Price:' : language === 'kn' ? 'ಪ್ರಸ್ತುತ ಪೂಲ್ ದರ:' : 'वर्तमान पूल दर:'}</span>
-                      <span className="text-sm font-bold font-mono text-slate-300">₹{pool.currentTierPrice}/{pool.unit}</span>
+                      <span className="text-slate-500 text-[10px] uppercase tracking-wider block">{language === 'en' ? 'Current Pool Price:' : language === 'kn' ? 'ಪ್ರಸ್ತುತ ಪೂಲ್ ದರ:' : 'वर्तमान पूल दर:'}</span>
+                      <span className="text-sm font-semibold font-mono text-slate-200 mt-0.5 block">₹{pool.currentTierPrice}/{pool.unit}</span>
                     </div>
                     <div>
-                      <span className="text-slate-500 text-[10px] block">{language === 'en' ? 'Target Price (at 100%):' : language === 'kn' ? 'ಗುರಿ ದರ (100% ನಲ್ಲಿ):' : 'टारगेट टियर दर (100% पर):'}</span>
-                      <span className="text-sm font-black font-mono text-emerald-400">₹{pool.nextTierPrice}/{pool.unit}</span>
+                      <span className="text-slate-500 text-[10px] uppercase tracking-wider block">{language === 'en' ? 'Target Price (at 100%):' : language === 'kn' ? 'ಗುರಿ ದರ (100% ನಲ್ಲಿ):' : 'टारगेट टियर दर (100% पर):'}</span>
+                      <span className="text-sm font-bold font-mono text-emerald-400 mt-0.5 block">₹{pool.nextTierPrice}/{pool.unit}</span>
                     </div>
                   </div>
 
                   {/* Pool Join Actions */}
-                  <div className="flex items-center justify-between pt-2 border-t border-slate-800">
+                  <div className="flex items-center justify-between pt-2 border-t border-slate-800/80">
                     <span className="text-xs text-slate-400">
                       {pool.participantsCount} {language === 'en' ? 'merchants pledged' : language === 'kn' ? 'ವ್ಯಾಪಾರಿಗಳು ಸೇರಿದ್ದಾರೆ' : 'स्थानीय व्यापारी शामिल'}
                     </span>
@@ -222,7 +222,7 @@ export const NetworkModule: React.FC<NetworkModuleProps> = ({
                         setPledgingPool(pool);
                         setPledgeQuantity(500);
                       }}
-                      className="px-4 py-2 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs tactile-btn flex items-center gap-1.5 shadow-sm"
+                      className="px-4 py-2 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs tactile-btn flex items-center gap-1.5 shadow-sm transition-colors"
                     >
                       <span>{activeT.joinPoolBtn}</span>
                       <ArrowRight className="w-4 h-4" />
@@ -261,36 +261,36 @@ export const NetworkModule: React.FC<NetworkModuleProps> = ({
           {/* Peer Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {filteredPeers.map((peer) => (
-              <div key={peer.id} className="bg-slate-900/80 border border-slate-800 rounded-xl p-4 space-y-3 shadow-sm hover:border-slate-700 transition-all">
+              <div key={peer.id} className="surface-card p-4 space-y-3 hover:border-slate-700 transition-all">
                 <div className="flex items-start justify-between gap-2">
                   <div>
-                    <h4 className="text-sm font-bold text-white leading-snug">{peer.businessName}</h4>
+                    <h4 className="text-sm font-semibold text-white leading-snug">{peer.businessName}</h4>
                     <p className="text-xs text-slate-400 mt-0.5">{peer.ownerName} • {peer.city}</p>
                     <span className="text-[11px] text-slate-500 font-mono">{peer.mandiArea}</span>
                   </div>
 
-                  <span className="px-2 py-0.5 rounded text-xs font-mono font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+                  <span className="px-2 py-0.5 rounded text-xs font-mono font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                     {peer.reputationScore}/100
                   </span>
                 </div>
 
-                <div className="space-y-1.5 pt-2 border-t border-slate-800 text-xs">
+                <div className="space-y-1.5 pt-2 border-t border-slate-800/80 text-xs">
                   <span className="text-[11px] text-slate-400 block">{activeT.availableStock}</span>
                   <div className="space-y-1">
                     {peer.availableStockPreview.map((item, i) => (
-                      <span key={i} className="inline-block bg-slate-950 border border-slate-800 px-2 py-0.5 rounded text-[11px] text-slate-300 mr-1 mb-1">
+                      <span key={i} className="inline-block bg-[#090d14] border border-slate-800 px-2 py-0.5 rounded text-[11px] text-slate-300 mr-1 mb-1">
                         {item}
                       </span>
                     ))}
                   </div>
                 </div>
 
-                <div className="pt-2 flex items-center justify-between border-t border-slate-800">
+                <div className="pt-2 flex items-center justify-between border-t border-slate-800/80">
                   <span className="text-[11px] text-emerald-400 font-medium">● {language === 'en' ? 'Verified Online' : language === 'kn' ? 'ಆನ್‌ಲೈನ್‌ನಲ್ಲಿದ್ದಾರೆ' : 'ऑनलाइन तैयार'}</span>
                   <button
                     type="button"
                     onClick={() => alert(language === 'en' ? `Stock allocation inquiry sent to ${peer.businessName}!` : language === 'kn' ? `${peer.businessName} ಅವರಿಗೆ ವಿಚಾರಣೆ ಕಳುಹಿಸಲಾಗಿದೆ!` : `${peer.businessName} को स्टॉक ट्रांसफर का अनुरोध भेज दिया गया है!`)}
-                    className="px-3 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs tactile-btn"
+                    className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-medium text-xs tactile-btn transition-colors"
                   >
                     {language === 'en' ? 'Request Sourcing' : language === 'kn' ? 'ಸರಕು ವರ್ಗಾವಣೆ ವಿನಂತಿ' : 'स्टॉक ट्रांसफर मांगें'}
                   </button>
@@ -303,15 +303,15 @@ export const NetworkModule: React.FC<NetworkModuleProps> = ({
 
       {/* Tab 3: Trade Reputation Passport */}
       {activeTab === 'TRADE_PASSPORT' && (
-        <div className="max-w-3xl mx-auto bg-slate-900/90 border border-amber-500/40 rounded-2xl p-6 sm:p-8 space-y-6 shadow-xl relative overflow-hidden">
+        <div className="max-w-3xl mx-auto surface-card border-amber-500/30 p-6 sm:p-8 space-y-6 shadow-xl relative overflow-hidden">
           
           {/* Passport Watermark & Emblem */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-6 border-b border-slate-800">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-6 border-b border-slate-800/80">
             <div className="space-y-1">
-              <span className="text-[11px] font-mono tracking-widest text-amber-400 uppercase font-bold">
+              <span className="text-[11px] font-mono tracking-widest text-amber-400 uppercase font-semibold">
                 {language === 'en' ? 'Vyapar Setu • Official B2B Trade Credibility Passport' : language === 'kn' ? 'ವ್ಯಾಪಾರ ಸೇತು • ಅಧಿಕೃತ ವ್ಯಾಪಾರ ವಿಶ್ವಾಸಾರ್ಹತೆ ಪಾಸ್‌ಪೋರ್ಟ್' : 'व्यापार सेतु • आधिकारिक व्यापार साख पासपोर्ट'}
               </span>
-              <h3 className="text-xl font-black text-white m-0">{tradePassport.merchantName}</h3>
+              <h3 className="text-xl font-bold text-white m-0">{tradePassport.merchantName}</h3>
               <p className="text-xs text-slate-400">
                 GSTIN: <span className="font-mono text-slate-300">{tradePassport.gstin}</span> • {language === 'en' ? 'Est.' : language === 'kn' ? 'ಸ್ಥಾಪನೆ:' : 'स्थापना:'} {tradePassport.establishedYear}
               </p>
@@ -332,48 +332,48 @@ export const NetworkModule: React.FC<NetworkModuleProps> = ({
           {/* 5-Dimensional Metric Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs">
             
-            <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
-              <span className="text-slate-500 text-[11px]">{language === 'en' ? 'On-Time Settlement Ratio:' : language === 'kn' ? 'ಸಮಯಕ್ಕೆ ಸರಿಯಾಗಿ ಪಾವತಿ:' : 'समय पर भुगतान अनुपात:'}</span>
-              <p className="text-lg font-black font-mono text-emerald-400">
+            <div className="p-3.5 rounded-xl surface-subtle space-y-1">
+              <span className="text-slate-500 text-[11px] uppercase tracking-wider">{language === 'en' ? 'On-Time Settlement Ratio:' : language === 'kn' ? 'ಸಮಯಕ್ಕೆ ಸರಿಯಾಗಿ ಪಾವತಿ:' : 'समय पर भुगतान अनुपात:'}</span>
+              <p className="text-lg font-bold font-mono text-emerald-400">
                 {tradePassport.metrics.onTimeSettlementRatio}%
               </p>
               <span className="text-[10px] text-slate-500">{language === 'en' ? 'Zero Default Track' : language === 'kn' ? 'ಯಾವುದೇ ಡೀಫಾಲ್ಟ್ ಇಲ್ಲ' : 'शून्य डिफ़ॉल्ट रिकॉर्ड'}</span>
             </div>
 
-            <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
-              <span className="text-slate-500 text-[11px]">{language === 'en' ? 'Trade Dispute Rate:' : language === 'kn' ? 'ವಿವಾದ ದರ:' : 'विवाद दर (Dispute Rate):'}</span>
-              <p className="text-lg font-black font-mono text-emerald-400">
+            <div className="p-3.5 rounded-xl surface-subtle space-y-1">
+              <span className="text-slate-500 text-[11px] uppercase tracking-wider">{language === 'en' ? 'Trade Dispute Rate:' : language === 'kn' ? 'ವಿವಾದ ದರ:' : 'विवाद दर (Dispute Rate):'}</span>
+              <p className="text-lg font-bold font-mono text-emerald-400">
                 {tradePassport.metrics.disputeRate}%
               </p>
               <span className="text-[10px] text-slate-500">{language === 'en' ? '100% Amicable Resolution' : language === 'kn' ? '100% ಸೌಹಾರ್ದಯುತ ಇತ್ಯರ್ಥ' : '100% सुगम सुलझाव'}</span>
             </div>
 
-            <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
-              <span className="text-slate-500 text-[11px]">{language === 'en' ? 'Verified Trade Volume:' : language === 'kn' ? 'ಪರಿಶೀಲಿತ ವ್ಯಾಪಾರ ವಹಿವಾಟು:' : 'सत्यापित सौदा वॉल्यूम:'}</span>
-              <p className="text-lg font-black font-mono text-amber-400">
+            <div className="p-3.5 rounded-xl surface-subtle space-y-1">
+              <span className="text-slate-500 text-[11px] uppercase tracking-wider">{language === 'en' ? 'Verified Trade Volume:' : language === 'kn' ? 'ಪರಿಶೀಲಿತ ವ್ಯಾಪಾರ ವಹಿವಾಟು:' : 'सत्यापित सौदा वॉल्यूम:'}</span>
+              <p className="text-lg font-bold font-mono text-amber-400">
                 ₹{tradePassport.metrics.completedDealsVolumeCr} Cr
               </p>
               <span className="text-[10px] text-slate-500">{language === 'en' ? 'Trailing 12 Months' : language === 'kn' ? 'ಕಳೆದ 12 ತಿಂಗಳು' : 'पिछले 12 माह'}</span>
             </div>
 
-            <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
-              <span className="text-slate-500 text-[11px]">{language === 'en' ? 'Wholesale Standing:' : language === 'kn' ? 'ವ್ಯಾಪಾರ ಅನುಭವ:' : 'मंडी साख अनुभव:'}</span>
-              <p className="text-lg font-black font-mono text-white">
+            <div className="p-3.5 rounded-xl surface-subtle space-y-1">
+              <span className="text-slate-500 text-[11px] uppercase tracking-wider">{language === 'en' ? 'Wholesale Standing:' : language === 'kn' ? 'ವ್ಯಾಪಾರ ಅನುಭವ:' : 'मंडी साख अनुभव:'}</span>
+              <p className="text-lg font-bold font-mono text-white">
                 {tradePassport.metrics.yearsInCircle} {language === 'en' ? 'Years' : language === 'kn' ? 'ವರ್ಷಗಳು' : 'वर्ष'}
               </p>
               <span className="text-[10px] text-slate-500">{language === 'en' ? 'Apex Wholesale Federation' : language === 'kn' ? 'ಸಗಟು ವ್ಯಾಪಾರ ಒಕ್ಕೂಟ' : 'कपड़ा व निर्माण महासंघ'}</span>
             </div>
 
-            <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
-              <span className="text-slate-500 text-[11px]">{language === 'en' ? 'Default Events:' : language === 'kn' ? 'ಡೀಫಾಲ್ಟ್ ಘಟನೆಗಳು:' : 'डिफ़ॉल्ट घटनाएं:'}</span>
-              <p className="text-lg font-black font-mono text-emerald-400">
+            <div className="p-3.5 rounded-xl surface-subtle space-y-1">
+              <span className="text-slate-500 text-[11px] uppercase tracking-wider">{language === 'en' ? 'Default Events:' : language === 'kn' ? 'ಡೀಫಾಲ್ಟ್ ಘಟನೆಗಳು:' : 'डिफ़ॉल्ट घटनाएं:'}</span>
+              <p className="text-lg font-bold font-mono text-emerald-400">
                 0
               </p>
               <span className="text-[10px] text-slate-500">{language === 'en' ? 'Flawless History' : language === 'kn' ? 'ಪರಿಶುದ್ಧ ಇತಿಹಾಸ' : 'क्लीन ट्रैक रिकॉर्ड'}</span>
             </div>
 
-            <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
-              <span className="text-slate-500 text-[11px]">{language === 'en' ? 'Last Verified Audit:' : language === 'kn' ? 'ಕೊನೆಯ ಲೆಕ್ಕ ಪರಿಶೋಧನೆ:' : 'अंतिम स्वतंत्र ऑडिट:'}</span>
+            <div className="p-3.5 rounded-xl surface-subtle space-y-1">
+              <span className="text-slate-500 text-[11px] uppercase tracking-wider">{language === 'en' ? 'Last Verified Audit:' : language === 'kn' ? 'ಕೊನೆಯ ಲೆಕ್ಕ ಪರಿಶೋಧನೆ:' : 'अंतिम स्वतंत्र ऑडिट:'}</span>
               <p className="text-sm font-bold font-mono text-slate-300">
                 {tradePassport.lastAuditedDate}
               </p>

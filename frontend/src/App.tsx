@@ -27,7 +27,6 @@ import { ControlTowerModule } from './components/ControlTowerModule';
 import { NetworkModule } from './components/NetworkModule';
 import { LedgerModule } from './components/LedgerModule';
 import { NewDealModal } from './components/NewDealModal';
-import { Scene3DHero } from './components/Scene3DHero';
 import { 
   LayoutDashboard, 
   Truck, 
@@ -143,11 +142,6 @@ export function App() {
       localStorage.setItem('vyapar_setu_bank', bankBalance.toString());
     } catch {}
   }, [bankBalance]);
-
-  // Derived financial metrics
-  const totalReceivables = parties
-    .filter(p => p.currentBalance > 0)
-    .reduce((sum, p) => sum + p.currentBalance, 0);
 
   // Handler: Reset Demo Data
   const handleResetDemoData = () => {
@@ -381,51 +375,44 @@ export function App() {
       />
 
       {/* Main Container */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 grain-overlay">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
         
-        {/* 3D Interactive WebGL Pipeline & Telemetry Hero */}
-        <Scene3DHero 
-          tradeMode={tradeMode} 
-          totalReceivables={totalReceivables} 
-          totalOrders={deals.length} 
-        />
-
         {/* Navigation Tabs Bar */}
         <div className="flex items-center justify-between border-b border-slate-800/80 pb-2">
-          <nav className="flex space-x-2 sm:space-x-4">
+          <nav className="flex items-center space-x-1.5 sm:space-x-2">
             
             <button
               type="button"
               onClick={() => setActiveTab('COCKPIT')}
-              className={`flex items-center gap-2 px-4 py-2.5 text-xs sm:text-sm font-bold border-b-2 transition-all rounded-t-lg ${
+              className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
                 activeTab === 'COCKPIT'
-                  ? 'border-amber-500 text-amber-400 bg-amber-500/10'
-                  : 'border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/40'
+                  ? 'bg-amber-500/10 text-amber-300 border border-amber-500/30'
+                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/60'
               }`}
             >
-              <LayoutDashboard className="w-4 h-4" />
-              <span>{t.tabCockpit} <span className="hidden sm:inline text-xs text-slate-400 font-normal">({t.tabCockpitSub})</span></span>
+              <LayoutDashboard className="w-4 h-4 text-amber-400/90" />
+              <span>{t.tabCockpit}</span>
             </button>
 
             <div className="flex items-center">
               <button
                 type="button"
                 onClick={() => setActiveTab('CONTROL_TOWER')}
-                className={`flex items-center gap-2 px-3.5 py-2.5 text-xs sm:text-sm font-bold border-b-2 transition-all ${
+                className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
                   activeTab === 'CONTROL_TOWER'
-                    ? 'border-amber-500 text-amber-400 bg-amber-500/5'
-                    : 'border-transparent text-slate-400 hover:text-slate-200'
+                    ? 'bg-amber-500/10 text-amber-300 border border-amber-500/30'
+                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/60'
                 }`}
               >
-                <Truck className="w-4 h-4" />
-                <span>{t.tabControlTower} <span className="hidden sm:inline text-xs text-slate-400 font-normal">({t.tabControlTowerSub})</span></span>
+                <Truck className="w-4 h-4 text-sky-400/90" />
+                <span>{t.tabControlTower}</span>
               </button>
               {activeTab === 'CONTROL_TOWER' && (
                 <button
                   type="button"
                   onClick={() => setNewDealModalOpen(true)}
                   title={t.newDealBtn}
-                  className="tactile-btn ml-1 flex items-center justify-center w-7 h-7 rounded-md bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-base leading-none transition-colors mb-0.5"
+                  className="tactile-btn ml-1.5 flex items-center justify-center w-6 h-6 rounded-md bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm leading-none shadow-sm"
                   aria-label="New Deal"
                 >
                   +
@@ -436,42 +423,42 @@ export function App() {
             <button
               type="button"
               onClick={() => setActiveTab('NETWORK')}
-              className={`flex items-center gap-2 px-3.5 py-2.5 text-xs sm:text-sm font-bold border-b-2 transition-all ${
+              className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
                 activeTab === 'NETWORK'
-                  ? 'border-amber-500 text-amber-400 bg-amber-500/5'
-                  : 'border-transparent text-slate-400 hover:text-slate-200'
+                  ? 'bg-amber-500/10 text-amber-300 border border-amber-500/30'
+                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/60'
               }`}
             >
-              <Network className="w-4 h-4" />
-              <span>{t.tabNetwork} <span className="hidden sm:inline text-xs text-slate-400 font-normal">({t.tabNetworkSub})</span></span>
+              <Network className="w-4 h-4 text-indigo-400/90" />
+              <span>{t.tabNetwork}</span>
             </button>
 
             <button
               type="button"
               onClick={() => setActiveTab('LEDGER')}
-              className={`flex items-center gap-2 px-3.5 py-2.5 text-xs sm:text-sm font-bold border-b-2 transition-all ${
+              className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
                 activeTab === 'LEDGER'
-                  ? 'border-amber-500 text-amber-400 bg-amber-500/5'
-                  : 'border-transparent text-slate-400 hover:text-slate-200'
+                  ? 'bg-amber-500/10 text-amber-300 border border-amber-500/30'
+                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/60'
               }`}
             >
-              <BookOpen className="w-4 h-4" />
-              <span>{t.tabLedger} <span className="hidden sm:inline text-xs text-slate-400 font-normal">({t.tabLedgerSub})</span></span>
+              <BookOpen className="w-4 h-4 text-emerald-400/90" />
+              <span>{t.tabLedger}</span>
             </button>
 
           </nav>
 
           {/* Trade Mode Indicator Pill */}
-          <div className="hidden md:flex items-center gap-2 text-xs font-semibold px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-slate-300">
+          <div className="hidden md:flex items-center gap-2 text-xs font-medium px-3 py-1 rounded-full bg-slate-900/90 border border-slate-800 text-slate-300">
             {tradeMode === 'TEXTILE' ? (
               <>
                 <Layers className="w-3.5 h-3.5 text-amber-400" />
-                <span>{t.textileModeIndicator}</span>
+                <span className="text-[11px] text-slate-400">{t.textileModeIndicator}</span>
               </>
             ) : (
               <>
                 <HardHat className="w-3.5 h-3.5 text-amber-400" />
-                <span>{t.buildingModeIndicator}</span>
+                <span className="text-[11px] text-slate-400">{t.buildingModeIndicator}</span>
               </>
             )}
           </div>

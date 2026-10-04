@@ -145,7 +145,7 @@ export const ControlTowerModule: React.FC<ControlTowerModuleProps> = ({
     <div className="space-y-6">
       
       {/* Pipeline Stage Bar */}
-      <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-3 shadow-sm overflow-x-auto">
+      <div className="surface-card p-2.5 overflow-x-auto">
         <div className="flex items-center justify-between min-w-[760px] gap-2">
           {STAGES.map((s, idx) => {
             const count = deals.filter(d => d.tradeMode === tradeMode && d.stage === s.key).length;
@@ -155,21 +155,21 @@ export const ControlTowerModule: React.FC<ControlTowerModuleProps> = ({
                 key={s.key}
                 type="button"
                 onClick={() => setStageFilter(isActive ? 'ALL' : s.key)}
-                className={`flex-1 p-2 rounded-lg border text-left transition-all ${
+                className={`flex-1 p-2.5 rounded-lg border text-left transition-all ${
                   isActive
-                    ? 'bg-amber-500/10 border-amber-500 text-white'
-                    : 'bg-slate-950/60 border-slate-800/80 text-slate-400 hover:border-slate-700'
+                    ? 'bg-amber-500/10 border-amber-500/50 text-white shadow-sm'
+                    : 'surface-subtle hover:bg-slate-800/60 text-slate-400'
                 }`}
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-mono text-slate-500">0{idx + 1}</span>
-                  <span className={`px-1.5 py-0.2 rounded-full text-[10px] font-bold ${
-                    count > 0 ? 'bg-amber-500/20 text-amber-300' : 'bg-slate-800 text-slate-500'
+                  <span className="text-[10px] font-mono text-slate-500 font-medium">0{idx + 1}</span>
+                  <span className={`px-1.5 py-0.2 rounded-full text-[10px] font-bold font-mono ${
+                    count > 0 ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30' : 'bg-slate-800 text-slate-500'
                   }`}>
                     {count}
                   </span>
                 </div>
-                <div className="text-xs font-bold text-white mt-1 truncate">{s.label}</div>
+                <div className="text-xs font-semibold text-slate-200 mt-1 truncate">{s.label}</div>
                 <div className="text-[11px] text-slate-400 truncate">{s.subLabel}</div>
               </button>
             );
@@ -183,13 +183,13 @@ export const ControlTowerModule: React.FC<ControlTowerModuleProps> = ({
         {/* Left Column (5 cols): Filtered Deal Cards */}
         <div className="lg:col-span-5 space-y-3">
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-bold text-white m-0">{activeT.activeDealsTitle}</h3>
+            <h3 className="text-sm font-semibold text-slate-200 m-0">{activeT.activeDealsTitle}</h3>
             <span className="text-xs font-mono text-slate-400">
               {filteredDeals.length} {activeT.dealsAvailable}
             </span>
           </div>
 
-          <div className="space-y-3 max-h-[640px] overflow-y-auto pr-1">
+          <div className="space-y-2.5 max-h-[640px] overflow-y-auto pr-1">
             {filteredDeals.map((deal) => {
               const isSelected = deal.id === selectedDeal?.id;
               const currentStageObj = STAGES.find(s => s.key === deal.stage);
@@ -197,29 +197,29 @@ export const ControlTowerModule: React.FC<ControlTowerModuleProps> = ({
                 <div
                   key={deal.id}
                   onClick={() => handleSelectDeal(deal)}
-                  className={`p-4 rounded-xl border cursor-pointer transition-all ${
+                  className={`p-3.5 rounded-xl border cursor-pointer transition-all ${
                     isSelected
-                      ? 'bg-slate-900 border-amber-500 shadow-lg shadow-amber-950/20'
-                      : 'bg-slate-900/60 border-slate-800 hover:border-slate-700'
+                      ? 'surface-card border-amber-500/60 shadow-md ring-1 ring-amber-500/20'
+                      : 'surface-subtle hover:border-slate-700'
                   }`}
                 >
                   <div className="flex items-start justify-between gap-2">
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="font-mono text-xs text-amber-400 font-bold">{deal.dealNumber}</span>
-                        <span className="text-[11px] font-semibold text-slate-400">• {deal.createdAt}</span>
+                        <span className="font-mono text-xs text-amber-400 font-semibold">{deal.dealNumber}</span>
+                        <span className="text-[11px] text-slate-400">• {deal.createdAt}</span>
                       </div>
-                      <h4 className="text-sm font-bold text-white mt-0.5">{deal.title}</h4>
+                      <h4 className="text-sm font-semibold text-slate-100 mt-0.5">{deal.title}</h4>
                       <p className="text-xs text-slate-400">{deal.partyName} ({deal.partyCity})</p>
                     </div>
 
                     <div className="text-right">
-                      <span className="text-sm font-black font-mono text-white block">
+                      <span className="text-sm font-bold font-mono text-white block">
                         ₹{deal.totalAmount.toLocaleString('en-IN')}
                       </span>
-                      <span className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold mt-1 ${
+                      <span className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold mt-1 ${
                         deal.stage === 'SETTLED'
-                          ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                          ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
                           : 'bg-amber-500/10 text-amber-400 border border-amber-500/20'
                       }`}>
                         {currentStageObj?.label || deal.stage}
@@ -246,21 +246,21 @@ export const ControlTowerModule: React.FC<ControlTowerModuleProps> = ({
 
         {/* Right Column (7 cols): Selected Deal Execution Studio */}
         {selectedDeal ? (
-          <div className="lg:col-span-7 bg-slate-900/90 border border-slate-800 rounded-xl p-5 shadow-sm space-y-6">
+          <div className="lg:col-span-7 surface-card p-5 space-y-6">
             
             {/* Deal Header */}
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-4 border-b border-slate-800">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-4 border-b border-slate-800/80">
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="text-xs font-mono font-bold px-2 py-0.5 bg-amber-500/10 text-amber-400 rounded border border-amber-500/30">
+                  <span className="text-xs font-mono font-semibold px-2 py-0.5 bg-amber-500/10 text-amber-400 rounded-md border border-amber-500/30">
                     {selectedDeal.dealNumber}
                   </span>
-                  <h3 className="text-base font-bold text-white m-0">{selectedDeal.title}</h3>
+                  <h3 className="text-base font-semibold text-white m-0">{selectedDeal.title}</h3>
                 </div>
                 <p className="text-xs text-slate-400 mt-1 flex items-center gap-2">
                   <span>{activeT.party} <strong className="text-slate-200">{selectedDeal.partyName}</strong> ({selectedDeal.partyCity})</span>
                   <span>•</span>
-                  <a href={`tel:${selectedDeal.partyPhone}`} className="text-sky-400 flex items-center gap-1 font-mono">
+                  <a href={`tel:${selectedDeal.partyPhone}`} className="text-sky-400 hover:text-sky-300 flex items-center gap-1 font-mono transition-colors">
                     <Phone className="w-3 h-3" />
                     <span>{selectedDeal.partyPhone}</span>
                   </a>
@@ -273,7 +273,7 @@ export const ControlTowerModule: React.FC<ControlTowerModuleProps> = ({
                 <button
                   type="button"
                   onClick={() => setInvoiceModalDeal(selectedDeal)}
-                  className="px-3 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-bold text-xs rounded-lg tactile-btn flex items-center gap-1.5"
+                  className="px-3 py-2 surface-subtle hover:bg-slate-800 text-slate-200 font-medium text-xs rounded-lg tactile-btn flex items-center gap-1.5 transition-colors"
                 >
                   <Printer className="w-3.5 h-3.5 text-amber-400" />
                   <span>{activeT.printInvoiceBtn}</span>
@@ -284,7 +284,7 @@ export const ControlTowerModule: React.FC<ControlTowerModuleProps> = ({
                   <button
                     type="button"
                     onClick={() => handleAdvanceStage(selectedDeal)}
-                    className="px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-xs rounded-lg tactile-btn flex items-center gap-1.5 shadow-md"
+                    className="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs rounded-lg tactile-btn flex items-center gap-1.5 shadow-sm transition-colors"
                   >
                     <span>{activeT.advanceCTA}</span>
                     <ChevronRight className="w-4 h-4" />
@@ -297,7 +297,7 @@ export const ControlTowerModule: React.FC<ControlTowerModuleProps> = ({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
               
               {/* Packaging & Logistics Box */}
-              <div className="p-3.5 rounded-lg bg-slate-950 border border-slate-800 space-y-2">
+              <div className="p-3.5 rounded-xl surface-subtle space-y-2">
                 <div className="flex items-center justify-between text-slate-400 font-semibold pb-1 border-b border-slate-800/80">
                   <span className="flex items-center gap-1.5 text-white">
                     <Truck className="w-3.5 h-3.5 text-sky-400" />
@@ -306,7 +306,7 @@ export const ControlTowerModule: React.FC<ControlTowerModuleProps> = ({
                   <span className="font-mono text-[10px] text-sky-400">{selectedDeal.dispatch.biltyNo}</span>
                 </div>
 
-                <div className="space-y-1 text-slate-300">
+                <div className="space-y-1.5 text-slate-300">
                   <div className="flex justify-between">
                     <span className="text-slate-500">{activeT.truckNo}</span>
                     <span className="font-mono font-bold text-white">{selectedDeal.dispatch.vehicleNo}</span>
@@ -320,7 +320,7 @@ export const ControlTowerModule: React.FC<ControlTowerModuleProps> = ({
                     <span>{selectedDeal.dispatch.transporterName}</span>
                   </div>
                   {selectedDeal.dispatch.weighbridgeSlipNo ? (
-                    <div className="flex items-center justify-between pt-1 border-t border-slate-800">
+                    <div className="flex items-center justify-between pt-1 border-t border-slate-800/60">
                       <span className="text-slate-500">{activeT.weighbridge}</span>
                       <button
                         type="button"
@@ -329,19 +329,19 @@ export const ControlTowerModule: React.FC<ControlTowerModuleProps> = ({
                           setTareWeightInput(selectedDeal.dispatch.weighbridgeTareKg || 12450);
                           setWeighbridgeModalOpen(true);
                         }}
-                        className="font-mono text-amber-400 hover:text-amber-300 font-bold flex items-center gap-1 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20 tactile-btn"
+                        className="font-mono text-amber-400 hover:text-amber-300 font-semibold flex items-center gap-1 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20 tactile-btn transition-colors"
                       >
                         <span>{selectedDeal.dispatch.weighbridgeSlipNo}</span>
                         <ExternalLink className="w-3 h-3" />
                       </button>
                     </div>
                   ) : tradeMode === 'TEXTILE' ? (
-                    <div className="flex items-center justify-between pt-1 border-t border-slate-800">
+                    <div className="flex items-center justify-between pt-1 border-t border-slate-800/60">
                       <span className="text-slate-500">{activeT.rollsDetail}</span>
                       <button
                         type="button"
                         onClick={() => setThaanModalOpen(true)}
-                        className="font-mono text-amber-400 hover:text-amber-300 font-bold flex items-center gap-1 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20 tactile-btn"
+                        className="font-mono text-amber-400 hover:text-amber-300 font-semibold flex items-center gap-1 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20 tactile-btn transition-colors"
                       >
                         <span>18 Thaans (704m)</span>
                         <ExternalLink className="w-3 h-3" />
@@ -352,7 +352,7 @@ export const ControlTowerModule: React.FC<ControlTowerModuleProps> = ({
               </div>
 
               {/* Payment & Credit Terms Box */}
-              <div className="p-3.5 rounded-lg bg-slate-950 border border-slate-800 space-y-2">
+              <div className="p-3.5 rounded-xl surface-subtle space-y-2">
                 <div className="flex items-center justify-between text-slate-400 font-semibold pb-1 border-b border-slate-800/80">
                   <span className="flex items-center gap-1.5 text-white">
                     <IndianRupee className="w-3.5 h-3.5 text-emerald-400" />
@@ -363,7 +363,7 @@ export const ControlTowerModule: React.FC<ControlTowerModuleProps> = ({
                   </span>
                 </div>
 
-                <div className="space-y-1 text-slate-300">
+                <div className="space-y-1.5 text-slate-300">
                   <div className="flex justify-between">
                     <span className="text-slate-500">{activeT.advanceAmount}</span>
                     <span className="font-mono font-bold text-emerald-400">₹{selectedDeal.advanceReceived.toLocaleString('en-IN')}</span>
@@ -382,11 +382,11 @@ export const ControlTowerModule: React.FC<ControlTowerModuleProps> = ({
             </div>
 
             {/* Delivery & Shortage Inspection Tracker (If at or past delivery) */}
-            <div className="p-4 rounded-xl bg-slate-950/80 border border-slate-800 space-y-3">
+            <div className="p-4 rounded-xl surface-subtle space-y-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Scale className="w-4 h-4 text-amber-400" />
-                  <h4 className="text-xs font-bold text-white m-0">{activeT.deliveryInspectionTitle}</h4>
+                  <h4 className="text-xs font-semibold text-white m-0">{activeT.deliveryInspectionTitle}</h4>
                 </div>
                 <span className="text-[11px] text-slate-400">{activeT.autoCreditNote}</span>
               </div>
@@ -398,16 +398,16 @@ export const ControlTowerModule: React.FC<ControlTowerModuleProps> = ({
                     type="number"
                     value={acceptedQtyInput}
                     onChange={(e) => setAcceptedQtyInput(Number(e.target.value))}
-                    className="w-full bg-slate-900 border border-slate-700 rounded px-2.5 py-1.5 text-white font-mono"
+                    className="w-full bg-[#090d14] border border-slate-800 rounded px-2.5 py-1.5 text-white font-mono focus:outline-none focus:border-amber-500/60"
                   />
                 </div>
                 <div>
-                  <label className="text-[11px] text-red-400 block mb-1">{activeT.damagedQty}</label>
+                  <label className="text-[11px] text-rose-400 block mb-1">{activeT.damagedQty}</label>
                   <input
                     type="number"
                     value={damagedQtyInput}
                     onChange={(e) => setDamagedQtyInput(Number(e.target.value))}
-                    className="w-full bg-slate-900 border border-red-800/60 rounded px-2.5 py-1.5 text-red-300 font-mono"
+                    className="w-full bg-[#090d14] border border-rose-900/40 rounded px-2.5 py-1.5 text-rose-300 font-mono focus:outline-none focus:border-rose-500/60"
                   />
                 </div>
                 <div>
@@ -416,15 +416,15 @@ export const ControlTowerModule: React.FC<ControlTowerModuleProps> = ({
                     type="number"
                     value={shortageQtyInput}
                     onChange={(e) => setShortageQtyInput(Number(e.target.value))}
-                    className="w-full bg-slate-900 border border-amber-800/60 rounded px-2.5 py-1.5 text-amber-300 font-mono"
+                    className="w-full bg-[#090d14] border border-amber-900/40 rounded px-2.5 py-1.5 text-amber-300 font-mono focus:outline-none focus:border-amber-500/60"
                   />
                 </div>
               </div>
 
               {(damagedQtyInput > 0 || shortageQtyInput > 0) && (
-                <div className="p-2.5 rounded bg-red-950/30 border border-red-900/50 flex items-center justify-between text-xs">
-                  <span className="text-red-300">
-                    {activeT.creditNoteNotice} <strong>₹{((damagedQtyInput + shortageQtyInput) * (selectedDeal.items[0]?.rate || 100)).toLocaleString('en-IN')}</strong>
+                <div className="p-2.5 rounded-lg bg-rose-950/20 border border-rose-900/40 flex items-center justify-between text-xs">
+                  <span className="text-rose-300">
+                    {activeT.creditNoteNotice} <strong className="font-mono">₹{((damagedQtyInput + shortageQtyInput) * (selectedDeal.items[0]?.rate || 100)).toLocaleString('en-IN')}</strong>
                   </span>
                   <button
                     type="button"
@@ -432,7 +432,7 @@ export const ControlTowerModule: React.FC<ControlTowerModuleProps> = ({
                       onConfirmDelivery(selectedDeal.id, acceptedQtyInput, damagedQtyInput, shortageQtyInput);
                       alert(language === 'en' ? 'Credit Note issued and adjusted in party ledger!' : language === 'kn' ? 'ಕ್ರೆಡಿಟ್ ನೋಟ್ ನೀಡಲಾಗಿದೆ ಮತ್ತು ಖಾತೆಯಲ್ಲಿ ಸರಿಹೊಂದಿಸಲಾಗಿದೆ!' : 'क्रेडिट नोट जारी किया गया और खाते से घटाया गया!');
                     }}
-                    className="px-2.5 py-1 rounded bg-red-600 hover:bg-red-500 text-white font-bold text-[11px]"
+                    className="px-2.5 py-1 rounded bg-rose-600 hover:bg-rose-500 text-white font-medium text-[11px] transition-colors"
                   >
                     {activeT.adjustCreditNote}
                   </button>
@@ -442,20 +442,20 @@ export const ControlTowerModule: React.FC<ControlTowerModuleProps> = ({
 
             {/* True Net Deal Margin Calculator (Hidden from Godown Staff RBAC) */}
             {userRole !== 'GODOWN_DISPATCH' ? (
-              <div className="p-4 rounded-xl bg-slate-950 border border-amber-500/40 space-y-4">
-                <div className="flex items-center justify-between pb-2 border-b border-slate-800">
+              <div className="p-4 rounded-xl surface-subtle border-amber-500/30 space-y-4">
+                <div className="flex items-center justify-between pb-2 border-b border-slate-800/80">
                   <div className="flex items-center gap-2">
                     <Calculator className="w-4 h-4 text-amber-400" />
-                    <h4 className="text-sm font-bold text-white m-0">{activeT.marginCalculator}</h4>
+                    <h4 className="text-sm font-semibold text-white m-0">{activeT.marginCalculator}</h4>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-[11px] text-slate-400">{language === 'en' ? 'Margin Band:' : language === 'kn' ? 'ಲಾಭ ಶ್ರೇಣಿ:' : 'मुनाफा दर:'}</span>
                     <span className={`px-2 py-0.5 rounded text-xs font-mono font-bold ${
                       profitBand === 'HEALTHY'
-                        ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                        ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
                         : profitBand === 'THIN'
-                        ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30'
-                        : 'bg-red-500/20 text-red-400 border border-red-500/30'
+                        ? 'bg-amber-500/10 text-amber-300 border border-amber-500/20'
+                        : 'bg-rose-500/10 text-rose-400 border border-rose-500/20'
                     }`}>
                       {computedMarginPercent.toFixed(2)}% ({profitBand === 'HEALTHY' ? (language === 'en' ? 'Healthy' : language === 'kn' ? 'ಉತ್ತಮ' : 'स्वस्थ') : profitBand === 'THIN' ? (language === 'en' ? 'Thin' : language === 'kn' ? 'ಕಡಿಮೆ' : 'कम') : (language === 'en' ? 'Loss' : language === 'kn' ? 'ನಷ್ಟ' : 'घाटा')})
                     </span>
@@ -470,7 +470,7 @@ export const ControlTowerModule: React.FC<ControlTowerModuleProps> = ({
                       type="number"
                       value={freightInput}
                       onChange={(e) => setFreightInput(Number(e.target.value))}
-                      className="w-full bg-slate-900 border border-slate-700 rounded px-2 py-1 text-white font-mono"
+                      className="w-full bg-[#090d14] border border-slate-800 rounded px-2 py-1 text-white font-mono focus:outline-none focus:border-amber-500/60"
                     />
                   </div>
                   <div>
@@ -479,7 +479,7 @@ export const ControlTowerModule: React.FC<ControlTowerModuleProps> = ({
                       type="number"
                       value={hamaliInput}
                       onChange={(e) => setHamaliInput(Number(e.target.value))}
-                      className="w-full bg-slate-900 border border-slate-700 rounded px-2 py-1 text-white font-mono"
+                      className="w-full bg-[#090d14] border border-slate-800 rounded px-2 py-1 text-white font-mono focus:outline-none focus:border-amber-500/60"
                     />
                   </div>
                   <div>
@@ -488,7 +488,7 @@ export const ControlTowerModule: React.FC<ControlTowerModuleProps> = ({
                       type="number"
                       value={cdInput}
                       onChange={(e) => setCdInput(Number(e.target.value))}
-                      className="w-full bg-slate-900 border border-slate-700 rounded px-2 py-1 text-white font-mono"
+                      className="w-full bg-[#090d14] border border-slate-800 rounded px-2 py-1 text-white font-mono focus:outline-none focus:border-amber-500/60"
                     />
                   </div>
                   <div>
@@ -497,21 +497,21 @@ export const ControlTowerModule: React.FC<ControlTowerModuleProps> = ({
                       type="number"
                       value={dalaliInput}
                       onChange={(e) => setDalaliInput(Number(e.target.value))}
-                      className="w-full bg-slate-900 border border-slate-700 rounded px-2 py-1 text-white font-mono"
+                      className="w-full bg-[#090d14] border border-slate-800 rounded px-2 py-1 text-white font-mono focus:outline-none focus:border-amber-500/60"
                     />
                   </div>
                 </div>
 
                 {/* Net Rupee Profit Calculation Bar */}
-                <div className="pt-2 flex items-center justify-between border-t border-slate-800 text-xs">
-                  <div className="text-slate-400">
+                <div className="pt-2 flex items-center justify-between border-t border-slate-800/80 text-xs">
+                  <div className="text-slate-400 font-mono text-[11px]">
                     {activeT.grossRevenue} (₹{totalRevenue.toLocaleString('en-IN')}) - {activeT.landedCost} (₹{landedCost.toLocaleString('en-IN')})
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="flex items-center gap-2">
-                      <span className="text-slate-300 font-semibold">{activeT.netProfit}:</span>
-                      <span className={`text-base font-black font-mono ${
-                        computedNetProfit >= 0 ? 'text-emerald-400' : 'text-red-400'
+                      <span className="text-slate-300 font-medium">{activeT.netProfit}:</span>
+                      <span className={`text-base font-bold font-mono ${
+                        computedNetProfit >= 0 ? 'text-emerald-400' : 'text-rose-400'
                       }`}>
                         ₹{computedNetProfit.toLocaleString('en-IN')}
                       </span>

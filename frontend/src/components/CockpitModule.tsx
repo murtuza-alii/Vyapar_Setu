@@ -267,84 +267,71 @@ export const CockpitModule: React.FC<CockpitModuleProps> = ({
     <div className="space-y-6">
       
       {/* Top Dues & Morning Briefing Bar */}
-      {/* Top Level Vital Business Health Metrics Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         
         {/* Total Receivables */}
-        <div className="glass-card rounded-2xl p-5 relative overflow-hidden group">
+        <div className="surface-card p-4.5 space-y-1 relative group">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">{activeT.totalReceivables}</span>
-            <span className="p-2 rounded-xl bg-amber-500/10 text-amber-400 group-hover:scale-110 transition-transform">
-              <TrendingUp className="w-4 h-4" />
-            </span>
+            <span className="text-xs font-medium text-slate-400">{activeT.totalReceivables}</span>
+            <div className="p-1.5 rounded-md bg-amber-500/10 text-amber-400">
+              <TrendingUp className="w-3.5 h-3.5" />
+            </div>
           </div>
-          <div className="mt-3 flex items-baseline gap-2">
-            <span className="text-2xl sm:text-3xl font-black font-mono text-white tracking-tight metric-tabular">
-              ₹{totalReceivables.toLocaleString('en-IN')}
-            </span>
+          <div className="pt-1">
+            <span className="text-2xl font-bold font-mono tracking-tight text-white">₹{totalReceivables.toLocaleString('en-IN')}</span>
           </div>
-          <p className="text-[11px] text-slate-400 mt-1.5 leading-relaxed">{activeT.totalReceivablesSub}</p>
-          <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-500 to-amber-600 opacity-80"></div>
+          <p className="text-[11px] text-slate-400/80 m-0">{activeT.totalReceivablesSub}</p>
         </div>
 
         {/* 30+ Days Critical Overdue */}
-        <div className="glass-card rounded-2xl p-5 relative overflow-hidden group border-red-950/40 hover:border-red-500/40">
+        <div className="bg-[#14121a] border border-red-900/30 rounded-xl p-4.5 space-y-1 relative group">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-red-400 uppercase tracking-wider">{activeT.criticalOverdue}</span>
-            <span className="p-2 rounded-xl bg-red-500/10 text-red-400 animate-pulse">
-              <AlertTriangle className="w-4 h-4" />
-            </span>
+            <span className="text-xs font-medium text-red-400">{activeT.criticalOverdue}</span>
+            <div className="p-1.5 rounded-md bg-red-500/10 text-red-400">
+              <AlertTriangle className="w-3.5 h-3.5" />
+            </div>
           </div>
-          <div className="mt-3 flex items-baseline gap-2">
-            <span className="text-2xl sm:text-3xl font-black font-mono text-red-400 tracking-tight metric-tabular">
-              ₹{bucket30PlusTotal.toLocaleString('en-IN')}
-            </span>
+          <div className="pt-1">
+            <span className="text-2xl font-bold font-mono tracking-tight text-red-400">₹{bucket30PlusTotal.toLocaleString('en-IN')}</span>
           </div>
-          <p className="text-[11px] text-red-300/80 mt-1.5 leading-relaxed">{activeT.criticalOverdueSub}</p>
-          <div className="absolute bottom-0 left-0 right-0 h-1 bg-red-500 opacity-80"></div>
+          <p className="text-[11px] text-red-400/70 m-0">{activeT.criticalOverdueSub}</p>
         </div>
 
         {/* Today's Payables Outflow */}
-        <div className="glass-card rounded-2xl p-5 relative overflow-hidden group border-sky-950/40 hover:border-sky-500/40">
+        <div className="surface-card p-4.5 space-y-1 relative group">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">{activeT.todaysPayables}</span>
-            <span className="p-2 rounded-xl bg-sky-500/10 text-sky-400 group-hover:scale-110 transition-transform">
-              <ArrowDownLeft className="w-4 h-4" />
-            </span>
+            <span className="text-xs font-medium text-slate-400">{activeT.todaysPayables}</span>
+            <div className="p-1.5 rounded-md bg-sky-500/10 text-sky-400">
+              <ArrowDownLeft className="w-3.5 h-3.5" />
+            </div>
           </div>
-          <div className="mt-3 flex items-baseline gap-2">
-            <span className="text-2xl sm:text-3xl font-black font-mono text-sky-400 tracking-tight metric-tabular">
-              ₹1,10,000
-            </span>
+          <div className="pt-1">
+            <span className="text-2xl font-bold font-mono tracking-tight text-slate-100">₹1,10,000</span>
           </div>
-          <p className="text-[11px] text-slate-400 mt-1.5 leading-relaxed">{activeT.todaysPayablesSub}</p>
-          <div className="absolute bottom-0 left-0 right-0 h-1 bg-sky-500 opacity-80"></div>
+          <p className="text-[11px] text-slate-400/80 m-0">{activeT.todaysPayablesSub}</p>
         </div>
 
         {/* Dead Stock & Blocked Capital Alert */}
-        <div className="glass-card rounded-2xl p-5 relative overflow-hidden group border-amber-950/40 hover:border-amber-500/40">
+        <div className="surface-card p-4.5 space-y-1 relative group">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-amber-300 uppercase tracking-wider">{activeT.deadStockCapital}</span>
-            <span className="p-2 rounded-xl bg-amber-500/10 text-amber-400 group-hover:scale-110 transition-transform">
-              <PackageX className="w-4 h-4" />
-            </span>
+            <span className="text-xs font-medium text-slate-400">{activeT.deadStockCapital}</span>
+            <div className="p-1.5 rounded-md bg-amber-500/10 text-amber-400/90">
+              <PackageX className="w-3.5 h-3.5" />
+            </div>
           </div>
-          <div className="mt-3 flex items-baseline gap-2">
-            <span className="text-2xl sm:text-3xl font-black font-mono text-amber-300 tracking-tight metric-tabular">
-              ₹{totalDeadStockCapital.toLocaleString('en-IN')}
-            </span>
+          <div className="pt-1">
+            <span className="text-2xl font-bold font-mono tracking-tight text-amber-300">₹{totalDeadStockCapital.toLocaleString('en-IN')}</span>
           </div>
-          <p className="text-[11px] text-slate-400 mt-1.5 leading-relaxed">{activeT.deadStockCapitalSub}</p>
-          <div className="absolute bottom-0 left-0 right-0 h-1 bg-amber-500 opacity-80"></div>
+          <p className="text-[11px] text-slate-400/80 m-0">{activeT.deadStockCapitalSub}</p>
         </div>
 
       </div>
 
       {/* Main Grid: Udhari Radar & Multimodal Quick-Log */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
         {/* Left Column (7 cols): Udhari Radar with WhatsApp Reminders */}
-        <div className="lg:col-span-7 glass-panel rounded-2xl p-6 shadow-xl space-y-5">
+        <div className="lg:col-span-7 bg-slate-900/80 border border-slate-800 rounded-xl p-5 shadow-sm space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-3 border-b border-slate-800">
             <div>
               <div className="flex items-center gap-2">
@@ -357,12 +344,12 @@ export const CockpitModule: React.FC<CockpitModuleProps> = ({
             </div>
 
             {/* Aging Bucket Selector Chips */}
-            <div className="inline-flex rounded-lg bg-slate-950 p-1 border border-slate-800 text-xs font-medium">
+            <div className="inline-flex rounded-lg bg-[#0d121d] p-0.5 border border-slate-800 text-xs font-medium">
               <button
                 type="button"
                 onClick={() => setSelectedBucket('30_PLUS')}
-                className={`px-2.5 py-1 rounded transition-colors ${
-                  selectedBucket === '30_PLUS' ? 'bg-red-500 text-white font-bold' : 'text-slate-400 hover:text-white'
+                className={`px-2.5 py-1 rounded-md transition-all ${
+                  selectedBucket === '30_PLUS' ? 'bg-red-500/20 text-red-400 border border-red-500/30 font-semibold' : 'text-slate-400 hover:text-white'
                 }`}
               >
                 {activeT.days30Plus} (₹{(bucket30PlusTotal / 1000).toFixed(0)}k)
@@ -370,8 +357,8 @@ export const CockpitModule: React.FC<CockpitModuleProps> = ({
               <button
                 type="button"
                 onClick={() => setSelectedBucket('15_30')}
-                className={`px-2.5 py-1 rounded transition-colors ${
-                  selectedBucket === '15_30' ? 'bg-amber-500 text-slate-950 font-bold' : 'text-slate-400 hover:text-white'
+                className={`px-2.5 py-1 rounded-md transition-all ${
+                  selectedBucket === '15_30' ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30 font-semibold' : 'text-slate-400 hover:text-white'
                 }`}
               >
                 {activeT.days15To30} (₹{(bucket15_30Total / 1000).toFixed(0)}k)
@@ -379,8 +366,8 @@ export const CockpitModule: React.FC<CockpitModuleProps> = ({
               <button
                 type="button"
                 onClick={() => setSelectedBucket('0_15')}
-                className={`px-2.5 py-1 rounded transition-colors ${
-                  selectedBucket === '0_15' ? 'bg-emerald-500 text-slate-950 font-bold' : 'text-slate-400 hover:text-white'
+                className={`px-2.5 py-1 rounded-md transition-all ${
+                  selectedBucket === '0_15' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-semibold' : 'text-slate-400 hover:text-white'
                 }`}
               >
                 {activeT.days0To15} (₹{(bucket0_15Total / 1000).toFixed(0)}k)
@@ -388,8 +375,8 @@ export const CockpitModule: React.FC<CockpitModuleProps> = ({
               <button
                 type="button"
                 onClick={() => setSelectedBucket('ALL')}
-                className={`px-2.5 py-1 rounded transition-colors ${
-                  selectedBucket === 'ALL' ? 'bg-slate-700 text-white' : 'text-slate-400 hover:text-white'
+                className={`px-2.5 py-1 rounded-md transition-all ${
+                  selectedBucket === 'ALL' ? 'bg-slate-800 text-slate-200 font-semibold' : 'text-slate-400 hover:text-white'
                 }`}
               >
                 {activeT.allBucket}
@@ -398,56 +385,56 @@ export const CockpitModule: React.FC<CockpitModuleProps> = ({
           </div>
 
           {/* Party List Cards */}
-          <div className="space-y-3 max-h-[480px] overflow-y-auto pr-1">
+          <div className="space-y-2.5 max-h-[500px] overflow-y-auto pr-1">
             {filteredParties.map((party) => {
               const isCritical = party.aging.days30_plus > 0;
               return (
                 <div
                   key={party.id}
-                  className={`p-3.5 rounded-lg border transition-all ${
+                  className={`p-3.5 rounded-xl border transition-all ${
                     isCritical
-                      ? 'bg-red-950/20 border-red-900/50 hover:border-red-700/70'
-                      : 'bg-slate-950/60 border-slate-800 hover:border-slate-700'
+                      ? 'bg-[#15121c] border-red-900/40 hover:border-red-700/60'
+                      : 'bg-[#0d121d] border-slate-800/80 hover:border-slate-700'
                   }`}
                 >
                   <div className="flex items-start justify-between gap-3">
-                    <div className="space-y-1">
+                    <div className="space-y-0.5">
                       <div className="flex items-center gap-2">
-                        <span className="font-bold text-white text-sm">{party.name}</span>
+                        <span className="font-semibold text-white text-sm">{party.name}</span>
                         {isCritical && (
-                          <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-red-500/20 text-red-400 border border-red-500/30">
+                          <span className="px-1.5 py-0.2 rounded text-[10px] font-bold bg-red-500/20 text-red-400 border border-red-500/30">
                             {activeT.criticalBadge}
                           </span>
                         )}
                       </div>
-                      <p className="text-xs text-slate-400 flex items-center gap-2">
+                      <p className="text-xs text-slate-400 flex items-center gap-2 m-0">
                         <span>{party.city}</span>
-                        <span>•</span>
-                        <span className="font-mono text-slate-300">{party.phone}</span>
+                        <span className="text-slate-600">•</span>
+                        <span className="font-mono text-slate-400 text-[11px]">{party.phone}</span>
                       </p>
                     </div>
 
                     <div className="text-right">
-                      <div className="text-base font-black font-mono text-amber-400">
+                      <div className="text-base font-bold font-mono text-amber-400">
                         ₹{party.currentBalance.toLocaleString('en-IN')}
                       </div>
-                      <span className="text-[11px] text-slate-500">
+                      <span className="text-[11px] text-slate-500 block">
                         {activeT.lastPayment} {party.lastPaymentDate}
                       </span>
                     </div>
                   </div>
 
-                  {/* Aging Bar Breakdown */}
-                  <div className="mt-3 pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-xs">
-                    <div className="flex items-center gap-4 text-[11px]">
+                  {/* Aging Breakdown Bar */}
+                  <div className="mt-3 pt-2.5 border-t border-slate-800/60 flex items-center justify-between text-xs">
+                    <div className="flex items-center gap-3.5 text-[11px]">
                       <span className="text-slate-400">
-                        0-15d: <span className="font-mono text-emerald-400">₹{party.aging.days0_15.toLocaleString('en-IN')}</span>
+                        0-15d: <span className="font-mono text-slate-300">₹{party.aging.days0_15.toLocaleString('en-IN')}</span>
                       </span>
                       <span className="text-slate-400">
-                        15-30d: <span className="font-mono text-amber-400">₹{party.aging.days15_30.toLocaleString('en-IN')}</span>
+                        15-30d: <span className="font-mono text-amber-300">₹{party.aging.days15_30.toLocaleString('en-IN')}</span>
                       </span>
                       {party.aging.days30_plus > 0 && (
-                        <span className="text-red-400 font-semibold">
+                        <span className="text-red-400 font-medium">
                           30d+: <span className="font-mono">₹{party.aging.days30_plus.toLocaleString('en-IN')}</span>
                         </span>
                       )}
@@ -460,9 +447,9 @@ export const CockpitModule: React.FC<CockpitModuleProps> = ({
                         setActiveReminderParty(party);
                         setCopiedReminder(false);
                       }}
-                      className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs tactile-btn shadow-sm"
+                      className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 font-medium text-xs tactile-btn"
                     >
-                      <Send className="w-3.5 h-3.5" />
+                      <Send className="w-3.5 h-3.5 text-emerald-400" />
                       <span>{activeT.sendWhatsApp}</span>
                     </button>
                   </div>
@@ -476,35 +463,35 @@ export const CockpitModule: React.FC<CockpitModuleProps> = ({
         <div className="lg:col-span-5 space-y-6">
           
           {/* Voice & Hinglish Quick-Log Box */}
-          <div className="glass-panel rounded-2xl p-6 shadow-xl space-y-5">
-            <div className="flex items-center justify-between pb-2 border-b border-slate-800/80">
+          <div className="surface-card p-5 space-y-4">
+            <div className="flex items-center justify-between">
               <div className="flex items-center gap-2.5">
-                <div className="p-2 rounded-xl bg-amber-500/10 text-amber-400">
+                <div className="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center">
                   <Mic className="w-4 h-4" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-white m-0">{activeT.quickDictateTitle}</h3>
-                  <p className="text-[11px] text-slate-400">{activeT.quickDictateSub}</p>
+                  <h3 className="text-sm font-semibold text-slate-100 m-0">{activeT.quickDictateTitle}</h3>
+                  <p className="text-xs text-slate-400">{activeT.quickDictateSub}</p>
                 </div>
               </div>
-              <span className="text-[10px] font-mono px-2.5 py-1 rounded-full bg-slate-800/80 border border-slate-700/60 text-emerald-400 font-semibold">
-                ● {activeT.aiParserActive}
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800/80 border border-slate-700/60 text-slate-300">
+                {activeT.aiParserActive}
               </span>
             </div>
 
             {/* Quick-Prompt Sample Chips */}
             <div className="space-y-1.5">
               <span className="text-[11px] text-slate-400 font-medium">{activeT.quickSamplesLabel}</span>
-              <div className="space-y-1">
+              <div className="space-y-1.5">
                 {samplePrompts.map((prompt, idx) => (
                   <button
                     key={idx}
                     type="button"
                     onClick={() => handleParseSpeech(prompt)}
-                    className="w-full text-left text-xs bg-slate-950/80 hover:bg-slate-800/80 border border-slate-800 hover:border-amber-500/40 p-2 rounded-lg text-slate-300 transition-colors flex items-center justify-between group"
+                    className="w-full text-left text-xs surface-subtle hover:bg-slate-800/70 p-2.5 rounded-lg text-slate-300 transition-colors flex items-center justify-between group"
                   >
                     <span className="truncate pr-2">{prompt}</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 text-slate-500 group-hover:text-amber-400 flex-shrink-0" />
+                    <ArrowUpRight className="w-3.5 h-3.5 text-slate-500 group-hover:text-amber-400 flex-shrink-0 transition-colors" />
                   </button>
                 ))}
               </div>
@@ -518,7 +505,7 @@ export const CockpitModule: React.FC<CockpitModuleProps> = ({
                   value={voiceInputText}
                   onChange={(e) => setVoiceInputText(e.target.value)}
                   placeholder={activeT.dictatePlaceholder}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 pr-12 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500/80 min-h-[75px]"
+                  className="w-full bg-[#090d14] border border-slate-800 rounded-lg p-3 pr-12 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500/60 min-h-[75px]"
                 />
                 <button
                   type="button"
@@ -526,8 +513,8 @@ export const CockpitModule: React.FC<CockpitModuleProps> = ({
                   title={isRecording ? activeT.stopListening : activeT.startSpeaking}
                   className={`absolute right-2.5 top-2.5 p-2 rounded-lg transition-all ${
                     isRecording 
-                      ? 'bg-red-500 text-white animate-pulse shadow-lg shadow-red-500/50' 
-                      : 'bg-slate-800 text-amber-400 hover:bg-slate-700'
+                      ? 'bg-rose-500 text-white animate-pulse shadow-md shadow-rose-500/30' 
+                      : 'bg-slate-800 hover:bg-slate-700 text-amber-400'
                   }`}
                 >
                   {isRecording ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
@@ -536,12 +523,12 @@ export const CockpitModule: React.FC<CockpitModuleProps> = ({
 
               {/* Live Waveform Indicator when recording */}
               {isRecording && (
-                <div className="flex items-center gap-2 p-2 bg-red-950/30 border border-red-800/50 rounded-lg text-xs text-red-300 animate-pulse">
+                <div className="flex items-center gap-2 p-2 bg-rose-950/20 border border-rose-800/40 rounded-lg text-xs text-rose-300 animate-pulse">
                   <div className="flex items-center gap-1">
-                    <span className="w-1 h-3 bg-red-400 animate-bounce" style={{ animationDelay: '0ms' }}></span>
-                    <span className="w-1 h-5 bg-red-400 animate-bounce" style={{ animationDelay: '150ms' }}></span>
-                    <span className="w-1 h-4 bg-red-400 animate-bounce" style={{ animationDelay: '300ms' }}></span>
-                    <span className="w-1 h-6 bg-red-400 animate-bounce" style={{ animationDelay: '450ms' }}></span>
+                    <span className="w-1 h-3 bg-rose-400 animate-bounce" style={{ animationDelay: '0ms' }}></span>
+                    <span className="w-1 h-5 bg-rose-400 animate-bounce" style={{ animationDelay: '150ms' }}></span>
+                    <span className="w-1 h-4 bg-rose-400 animate-bounce" style={{ animationDelay: '300ms' }}></span>
+                    <span className="w-1 h-6 bg-rose-400 animate-bounce" style={{ animationDelay: '450ms' }}></span>
                   </div>
                   <span className="font-medium">{activeT.listeningNotice}</span>
                 </div>
@@ -552,7 +539,7 @@ export const CockpitModule: React.FC<CockpitModuleProps> = ({
                   type="button"
                   onClick={() => handleParseSpeech(voiceInputText || samplePrompts[0])}
                   disabled={!voiceInputText && isRecording}
-                  className="px-3.5 py-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs rounded-md tactile-btn flex items-center gap-1.5 shadow-sm"
+                  className="px-3.5 py-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold text-xs rounded-lg tactile-btn flex items-center gap-1.5 shadow-sm transition-colors"
                 >
                   <Sparkles className="w-3.5 h-3.5" />
                   <span>{activeT.parseAndDraft}</span>
@@ -563,55 +550,55 @@ export const CockpitModule: React.FC<CockpitModuleProps> = ({
 
             {/* Structured Draft Confirmation Card */}
             {parsedDraft && (
-              <div className="mt-4 p-4 rounded-xl bg-slate-950 border border-amber-500/50 space-y-3 animate-in fade-in slide-in-from-top-2 duration-200">
-                <div className="flex items-center justify-between pb-2 border-b border-slate-800">
-                  <div className="flex items-center gap-1.5 text-xs font-bold text-amber-400">
+              <div className="mt-4 p-4 rounded-xl bg-[#090d14] border border-amber-500/40 space-y-3 animate-in fade-in slide-in-from-top-2 duration-200">
+                <div className="flex items-center justify-between pb-2 border-b border-slate-800/80">
+                  <div className="flex items-center gap-1.5 text-xs font-semibold text-amber-400">
                     <CheckCircle2 className="w-4 h-4 text-emerald-400" />
                     <span>{activeT.verifyDraft}</span>
                   </div>
-                  <span className="text-[10px] font-mono bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded">
+                  <span className="text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded">
                     {activeT.confidence} {(parsedDraft.confidence * 100).toFixed(0)}%
                   </span>
                 </div>
 
-                <div className="grid grid-cols-2 gap-2 text-xs">
+                <div className="grid grid-cols-2 gap-2.5 text-xs">
                   <div>
-                    <span className="text-slate-500 text-[10px]">{activeT.party}</span>
-                    <p className="font-bold text-white truncate">{parsedDraft.partyName}</p>
+                    <span className="text-slate-500 text-[10px] uppercase tracking-wider">{activeT.party}</span>
+                    <p className="font-semibold text-slate-100 truncate mt-0.5">{parsedDraft.partyName}</p>
                   </div>
                   <div>
-                    <span className="text-slate-500 text-[10px]">{activeT.type}</span>
-                    <p className="font-semibold text-emerald-400">{parsedDraft.transactionType}</p>
+                    <span className="text-slate-500 text-[10px] uppercase tracking-wider">{activeT.type}</span>
+                    <p className="font-semibold text-emerald-400 mt-0.5">{parsedDraft.transactionType}</p>
                   </div>
                   <div>
-                    <span className="text-slate-500 text-[10px]">{activeT.itemLot}</span>
-                    <p className="text-slate-200">{parsedDraft.itemName} ({parsedDraft.lotOrGrade})</p>
+                    <span className="text-slate-500 text-[10px] uppercase tracking-wider">{activeT.itemLot}</span>
+                    <p className="text-slate-200 mt-0.5">{parsedDraft.itemName} ({parsedDraft.lotOrGrade})</p>
                   </div>
                   <div>
-                    <span className="text-slate-500 text-[10px]">{activeT.qtyRate}</span>
-                    <p className="font-mono text-slate-200">{parsedDraft.quantity} {parsedDraft.unit} @ ₹{parsedDraft.rate}</p>
+                    <span className="text-slate-500 text-[10px] uppercase tracking-wider">{activeT.qtyRate}</span>
+                    <p className="font-mono text-slate-200 mt-0.5">{parsedDraft.quantity} {parsedDraft.unit} @ ₹{parsedDraft.rate}</p>
                   </div>
                   <div>
-                    <span className="text-slate-500 text-[10px]">{activeT.cashPaid}</span>
-                    <p className="font-mono font-bold text-emerald-400">₹{parsedDraft.cashPaidOrReceived.toLocaleString('en-IN')}</p>
+                    <span className="text-slate-500 text-[10px] uppercase tracking-wider">{activeT.cashPaid}</span>
+                    <p className="font-mono font-semibold text-emerald-400 mt-0.5">₹{parsedDraft.cashPaidOrReceived.toLocaleString('en-IN')}</p>
                   </div>
                   <div>
-                    <span className="text-slate-500 text-[10px]">{activeT.balanceDue}</span>
-                    <p className="font-mono font-bold text-amber-400">₹{parsedDraft.balanceDue.toLocaleString('en-IN')}</p>
+                    <span className="text-slate-500 text-[10px] uppercase tracking-wider">{activeT.balanceDue}</span>
+                    <p className="font-mono font-semibold text-amber-400 mt-0.5">₹{parsedDraft.balanceDue.toLocaleString('en-IN')}</p>
                   </div>
                 </div>
 
                 {parsedDraft.logisticsNote && (
-                  <p className="text-[11px] text-sky-400 bg-sky-950/30 p-2 rounded border border-sky-900/40">
+                  <p className="text-[11px] text-sky-400 bg-sky-950/20 p-2 rounded-lg border border-sky-900/30">
                     🚚 {parsedDraft.logisticsNote}
                   </p>
                 )}
 
-                <div className="flex items-center gap-2 pt-2 border-t border-slate-800">
+                <div className="flex items-center gap-2 pt-2 border-t border-slate-800/80">
                   <button
                     type="button"
                     onClick={handleConfirmDraft}
-                    className="flex-1 py-1.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs rounded-md tactile-btn flex items-center justify-center gap-1.5"
+                    className="flex-1 py-1.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs rounded-lg tactile-btn flex items-center justify-center gap-1.5 transition-colors"
                   >
                     <Check className="w-4 h-4" />
                     <span>{activeT.commitToKhata}</span>
@@ -619,7 +606,7 @@ export const CockpitModule: React.FC<CockpitModuleProps> = ({
                   <button
                     type="button"
                     onClick={() => setParsedDraft(null)}
-                    className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs rounded-md"
+                    className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs rounded-lg transition-colors"
                   >
                     {activeT.cancel}
                   </button>
@@ -629,11 +616,11 @@ export const CockpitModule: React.FC<CockpitModuleProps> = ({
           </div>
 
           {/* Dead Stock & Blocked Inventory Card */}
-          <div className="glass-panel rounded-2xl p-6 shadow-xl space-y-4">
-            <div className="flex items-center justify-between pb-2 border-b border-slate-800/80">
+          <div className="surface-card p-5 space-y-3">
+            <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <PackageX className="w-4 h-4 text-amber-400" />
-                <h3 className="text-sm font-bold text-white m-0">{activeT.deadStockTitle}</h3>
+                <h3 className="text-sm font-semibold text-white m-0">{activeT.deadStockTitle}</h3>
               </div>
               <span className="text-xs font-mono font-bold text-amber-400">₹{totalDeadStockCapital.toLocaleString('en-IN')}</span>
             </div>
@@ -642,9 +629,9 @@ export const CockpitModule: React.FC<CockpitModuleProps> = ({
 
             <div className="space-y-2">
               {deadStockItems.map((item, idx) => (
-                <div key={idx} className="p-2.5 rounded-lg bg-slate-950 border border-slate-800 flex items-center justify-between text-xs">
+                <div key={idx} className="p-2.5 rounded-lg surface-subtle flex items-center justify-between text-xs">
                   <div>
-                    <span className="font-bold text-white block">
+                    <span className="font-semibold text-white block">
                       {'fabricName' in item ? item.fabricName : item.name}
                     </span>
                     <span className="text-[11px] text-amber-400 font-mono">
@@ -654,7 +641,7 @@ export const CockpitModule: React.FC<CockpitModuleProps> = ({
                   <button
                     type="button"
                     onClick={() => alert(`Broadcasted clearance offer at 10% discount!`)}
-                    className="px-2.5 py-1 rounded bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 text-[11px] font-semibold"
+                    className="px-2.5 py-1 rounded-md bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 text-[11px] font-medium transition-colors"
                   >
                     {activeT.broadcastDiscount}
                   </button>

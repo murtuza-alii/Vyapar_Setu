@@ -2,81 +2,77 @@
 
 @layer base {
   :root {
-    --bg-dark: #070a13;
-    --bg-card: #0b1120;
-    --border-subtle: #1e293b;
+    --bg-dark: #0b0f17;
+    --bg-card: #111726;
+    --bg-card-subtle: #0d121d;
+    --border-subtle: #1e2638;
+    --border-light: #2a354c;
     --accent-amber: #f59e0b;
-    --accent-emerald: #10b981;
-    --accent-sky: #38bdf8;
+    --accent-amber-glow: rgba(245, 158, 11, 0.12);
   }
 
   body {
-    background-color: #070a13;
+    background-color: #0b0f17;
     color: #f1f5f9;
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: 'Geist', 'Noto Sans Devanagari', 'Noto Sans Kannada', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     min-height: 100dvh;
     margin: 0;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.011em;
+  }
+
+  /* Refined tabular figures for financial numbers */
+  .font-mono, td, [data-tabular="true"] {
+    font-variant-numeric: tabular-nums;
   }
 }
 
-/* Micro-noise grain texture simulation */
-.grain-overlay {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0);
-  background-size: 24px 24px;
+/* Anti-Slop Card & Panel Surfaces */
+.surface-card {
+  background: #111726;
+  border: 1px solid #1e2638;
+  border-radius: 0.875rem;
+  box-shadow: 0 4px 20px -2px rgba(5, 8, 15, 0.45);
+  transition: border-color 0.18s ease, transform 0.18s ease;
 }
 
-/* High-End Glassmorphism Surfaces */
+.surface-card:hover {
+  border-color: #2b364e;
+}
+
+.surface-subtle {
+  background: #0d121d;
+  border: 1px solid #1a2233;
+}
+
 .glass-panel {
-  background: rgba(11, 17, 32, 0.72);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  background: rgba(17, 23, 38, 0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(42, 53, 76, 0.6);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
-.glass-card {
-  background: rgba(15, 23, 42, 0.55);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.glass-card:hover {
-  border-color: rgba(245, 158, 11, 0.35);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 30px -4px rgba(0, 0, 0, 0.5), 0 0 20px -2px rgba(245, 158, 11, 0.1);
-}
-
-/* Tactile Physics for Interactive Elements */
 .tactile-btn {
-  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.15s ease, background-color 0.15s ease;
+  transition: transform 0.12s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.15s ease, border-color 0.15s ease;
 }
+
 .tactile-btn:active {
-  transform: scale(0.97);
+  transform: scale(0.98);
 }
 
-/* Metric Display Formatting */
-.metric-tabular {
-  font-variant-numeric: tabular-nums;
-  letter-spacing: -0.03em;
-}
-
-/* Custom Sleek Scrollbar */
+/* Subtle, non-intrusive scrollbar */
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #070a13;
+  background: #0b0f17;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
-  border-radius: 9999px;
+  background: #1e2638;
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #2a354c;
 }
