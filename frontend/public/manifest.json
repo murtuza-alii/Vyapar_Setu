@@ -1,0 +1,17 @@
+{
+  "name": "व्यापार सेतु | Vyapar Setu Wholesale Cockpit",
+  "short_name": "व्यापार सेतु",
+  "description": "Unified Wholesale Business Cockpit for Rajasthan Textile & Building Material Mandis",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#090D16",
+  "theme_color": "#090D16",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}

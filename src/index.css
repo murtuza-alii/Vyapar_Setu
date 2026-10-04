@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-dark: #090D16;
+    --bg-card: #0F172A;
+    --border-subtle: #1E293B;
+    --border-hover: #334155;
+    --accent-amber: #F59E0B;
+    --accent-brass: #D97706;
+    --accent-emerald: #10B981;
+    --accent-rose: #EF4444;
+    --accent-indigo: #6366F1;
+  }
+
+  body {
+    background-color: #090D16;
+    color: #F1F5F9;
+    font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    min-height: 100dvh;
+    margin: 0;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* ============================================================
+   Wholesale Cockpit Custom Utilities
+   ============================================================ */
+
+/* High-Contrast Glassmorphic Card */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(51, 65, 85, 0.6);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+}
+
+/* Tactile Button Feedback for Touch Screens */
+.tactile-btn {
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+.tactile-btn:active {
+  transform: scale(0.98);
+}
+
+/* Tabular Figures for Rupee amounts and Lot numbers */
+.font-mono-tnum {
+  font-family: 'JetBrains Mono', monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Devanagari Vernacular Accent */
+.font-devanagari {
+  font-family: 'Noto Sans Devanagari', sans-serif;
+}
+
+/* Sleek Wholesale Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #090D16;
+}
+::-webkit-scrollbar-thumb {
+  background: #1E293B;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Pulsing Recording Glow for Voice Assistant */
+@keyframes voice-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+  }
+}
+
+.voice-recording-glow {
+  animation: voice-pulse 1.5s infinite;
+}
