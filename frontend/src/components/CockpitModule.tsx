@@ -267,75 +267,84 @@ export const CockpitModule: React.FC<CockpitModuleProps> = ({
     <div className="space-y-6">
       
       {/* Top Dues & Morning Briefing Bar */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      {/* Top Level Vital Business Health Metrics Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         
         {/* Total Receivables */}
-        <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-4 shadow-sm relative overflow-hidden">
+        <div className="glass-card rounded-2xl p-5 relative overflow-hidden group">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-400">{activeT.totalReceivables}</span>
-            <span className="p-1 rounded-md bg-amber-500/10 text-amber-400">
+            <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">{activeT.totalReceivables}</span>
+            <span className="p-2 rounded-xl bg-amber-500/10 text-amber-400 group-hover:scale-110 transition-transform">
               <TrendingUp className="w-4 h-4" />
             </span>
           </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl font-black font-mono text-white">₹{totalReceivables.toLocaleString('en-IN')}</span>
+          <div className="mt-3 flex items-baseline gap-2">
+            <span className="text-2xl sm:text-3xl font-black font-mono text-white tracking-tight metric-tabular">
+              ₹{totalReceivables.toLocaleString('en-IN')}
+            </span>
           </div>
-          <p className="text-[11px] text-slate-400 mt-1">{activeT.totalReceivablesSub}</p>
-          <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-500 to-amber-600"></div>
+          <p className="text-[11px] text-slate-400 mt-1.5 leading-relaxed">{activeT.totalReceivablesSub}</p>
+          <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-500 to-amber-600 opacity-80"></div>
         </div>
 
         {/* 30+ Days Critical Overdue */}
-        <div className="bg-slate-900/90 border border-red-900/40 rounded-xl p-4 shadow-sm relative overflow-hidden">
+        <div className="glass-card rounded-2xl p-5 relative overflow-hidden group border-red-950/40 hover:border-red-500/40">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-red-400">{activeT.criticalOverdue}</span>
-            <span className="p-1 rounded-md bg-red-500/10 text-red-400 animate-pulse">
+            <span className="text-xs font-semibold text-red-400 uppercase tracking-wider">{activeT.criticalOverdue}</span>
+            <span className="p-2 rounded-xl bg-red-500/10 text-red-400 animate-pulse">
               <AlertTriangle className="w-4 h-4" />
             </span>
           </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl font-black font-mono text-red-400">₹{bucket30PlusTotal.toLocaleString('en-IN')}</span>
+          <div className="mt-3 flex items-baseline gap-2">
+            <span className="text-2xl sm:text-3xl font-black font-mono text-red-400 tracking-tight metric-tabular">
+              ₹{bucket30PlusTotal.toLocaleString('en-IN')}
+            </span>
           </div>
-          <p className="text-[11px] text-red-300/80 mt-1">{activeT.criticalOverdueSub}</p>
-          <div className="absolute bottom-0 left-0 right-0 h-1 bg-red-500"></div>
+          <p className="text-[11px] text-red-300/80 mt-1.5 leading-relaxed">{activeT.criticalOverdueSub}</p>
+          <div className="absolute bottom-0 left-0 right-0 h-1 bg-red-500 opacity-80"></div>
         </div>
 
         {/* Today's Payables Outflow */}
-        <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-4 shadow-sm relative overflow-hidden">
+        <div className="glass-card rounded-2xl p-5 relative overflow-hidden group border-sky-950/40 hover:border-sky-500/40">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-400">{activeT.todaysPayables}</span>
-            <span className="p-1 rounded-md bg-sky-500/10 text-sky-400">
+            <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">{activeT.todaysPayables}</span>
+            <span className="p-2 rounded-xl bg-sky-500/10 text-sky-400 group-hover:scale-110 transition-transform">
               <ArrowDownLeft className="w-4 h-4" />
             </span>
           </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl font-black font-mono text-sky-400">₹1,10,000</span>
+          <div className="mt-3 flex items-baseline gap-2">
+            <span className="text-2xl sm:text-3xl font-black font-mono text-sky-400 tracking-tight metric-tabular">
+              ₹1,10,000
+            </span>
           </div>
-          <p className="text-[11px] text-slate-400 mt-1">{activeT.todaysPayablesSub}</p>
-          <div className="absolute bottom-0 left-0 right-0 h-1 bg-sky-500"></div>
+          <p className="text-[11px] text-slate-400 mt-1.5 leading-relaxed">{activeT.todaysPayablesSub}</p>
+          <div className="absolute bottom-0 left-0 right-0 h-1 bg-sky-500 opacity-80"></div>
         </div>
 
         {/* Dead Stock & Blocked Capital Alert */}
-        <div className="bg-slate-900/90 border border-amber-900/30 rounded-xl p-4 shadow-sm relative overflow-hidden">
+        <div className="glass-card rounded-2xl p-5 relative overflow-hidden group border-amber-950/40 hover:border-amber-500/40">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-amber-300">{activeT.deadStockCapital}</span>
-            <span className="p-1 rounded-md bg-amber-500/10 text-amber-400">
+            <span className="text-xs font-semibold text-amber-300 uppercase tracking-wider">{activeT.deadStockCapital}</span>
+            <span className="p-2 rounded-xl bg-amber-500/10 text-amber-400 group-hover:scale-110 transition-transform">
               <PackageX className="w-4 h-4" />
             </span>
           </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl font-black font-mono text-amber-300">₹{totalDeadStockCapital.toLocaleString('en-IN')}</span>
+          <div className="mt-3 flex items-baseline gap-2">
+            <span className="text-2xl sm:text-3xl font-black font-mono text-amber-300 tracking-tight metric-tabular">
+              ₹{totalDeadStockCapital.toLocaleString('en-IN')}
+            </span>
           </div>
-          <p className="text-[11px] text-slate-400 mt-1">{activeT.deadStockCapitalSub}</p>
-          <div className="absolute bottom-0 left-0 right-0 h-1 bg-amber-500"></div>
+          <p className="text-[11px] text-slate-400 mt-1.5 leading-relaxed">{activeT.deadStockCapitalSub}</p>
+          <div className="absolute bottom-0 left-0 right-0 h-1 bg-amber-500 opacity-80"></div>
         </div>
 
       </div>
 
       {/* Main Grid: Udhari Radar & Multimodal Quick-Log */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         
         {/* Left Column (7 cols): Udhari Radar with WhatsApp Reminders */}
-        <div className="lg:col-span-7 bg-slate-900/80 border border-slate-800 rounded-xl p-5 shadow-sm space-y-4">
+        <div className="lg:col-span-7 glass-panel rounded-2xl p-6 shadow-xl space-y-5">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-3 border-b border-slate-800">
             <div>
               <div className="flex items-center gap-2">
@@ -467,10 +476,10 @@ export const CockpitModule: React.FC<CockpitModuleProps> = ({
         <div className="lg:col-span-5 space-y-6">
           
           {/* Voice & Hinglish Quick-Log Box */}
-          <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-5 shadow-sm space-y-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div className="p-1.5 rounded-lg bg-amber-500/10 text-amber-400">
+          <div className="glass-panel rounded-2xl p-6 shadow-xl space-y-5">
+            <div className="flex items-center justify-between pb-2 border-b border-slate-800/80">
+              <div className="flex items-center gap-2.5">
+                <div className="p-2 rounded-xl bg-amber-500/10 text-amber-400">
                   <Mic className="w-4 h-4" />
                 </div>
                 <div>
@@ -478,8 +487,8 @@ export const CockpitModule: React.FC<CockpitModuleProps> = ({
                   <p className="text-[11px] text-slate-400">{activeT.quickDictateSub}</p>
                 </div>
               </div>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">
-                {activeT.aiParserActive}
+              <span className="text-[10px] font-mono px-2.5 py-1 rounded-full bg-slate-800/80 border border-slate-700/60 text-emerald-400 font-semibold">
+                ● {activeT.aiParserActive}
               </span>
             </div>
 
@@ -620,8 +629,8 @@ export const CockpitModule: React.FC<CockpitModuleProps> = ({
           </div>
 
           {/* Dead Stock & Blocked Inventory Card */}
-          <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-5 shadow-sm space-y-3">
-            <div className="flex items-center justify-between">
+          <div className="glass-panel rounded-2xl p-6 shadow-xl space-y-4">
+            <div className="flex items-center justify-between pb-2 border-b border-slate-800/80">
               <div className="flex items-center gap-2">
                 <PackageX className="w-4 h-4 text-amber-400" />
                 <h3 className="text-sm font-bold text-white m-0">{activeT.deadStockTitle}</h3>

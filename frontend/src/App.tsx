@@ -27,6 +27,7 @@ import { ControlTowerModule } from './components/ControlTowerModule';
 import { NetworkModule } from './components/NetworkModule';
 import { LedgerModule } from './components/LedgerModule';
 import { NewDealModal } from './components/NewDealModal';
+import { Scene3DHero } from './components/Scene3DHero';
 import { 
   LayoutDashboard, 
   Truck, 
@@ -142,6 +143,11 @@ export function App() {
       localStorage.setItem('vyapar_setu_bank', bankBalance.toString());
     } catch {}
   }, [bankBalance]);
+
+  // Derived financial metrics
+  const totalReceivables = parties
+    .filter(p => p.currentBalance > 0)
+    .reduce((sum, p) => sum + p.currentBalance, 0);
 
   // Handler: Reset Demo Data
   const handleResetDemoData = () => {
@@ -375,19 +381,26 @@ export function App() {
       />
 
       {/* Main Container */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 grain-overlay">
         
+        {/* 3D Interactive WebGL Pipeline & Telemetry Hero */}
+        <Scene3DHero 
+          tradeMode={tradeMode} 
+          totalReceivables={totalReceivables} 
+          totalOrders={deals.length} 
+        />
+
         {/* Navigation Tabs Bar */}
-        <div className="flex items-center justify-between border-b border-slate-800 pb-1">
+        <div className="flex items-center justify-between border-b border-slate-800/80 pb-2">
           <nav className="flex space-x-2 sm:space-x-4">
             
             <button
               type="button"
               onClick={() => setActiveTab('COCKPIT')}
-              className={`flex items-center gap-2 px-3.5 py-2.5 text-xs sm:text-sm font-bold border-b-2 transition-all ${
+              className={`flex items-center gap-2 px-4 py-2.5 text-xs sm:text-sm font-bold border-b-2 transition-all rounded-t-lg ${
                 activeTab === 'COCKPIT'
-                  ? 'border-amber-500 text-amber-400 bg-amber-500/5'
-                  : 'border-transparent text-slate-400 hover:text-slate-200'
+                  ? 'border-amber-500 text-amber-400 bg-amber-500/10'
+                  : 'border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/40'
               }`}
             >
               <LayoutDashboard className="w-4 h-4" />
